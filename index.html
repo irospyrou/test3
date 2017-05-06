@@ -20,7 +20,7 @@
     
     <script type="text/javascript">
 
-    var game = new Phaser.Game(448, 496, Phaser.AUTO);
+    var game = new Phaser.Game(500, 550, Phaser.AUTO);
 
     var Pacman = function (game) {
 
@@ -42,6 +42,9 @@
 
         this.current = Phaser.NONE;
         this.turning = Phaser.NONE;
+        
+        this.score=0;
+        this.scoreText='';
 
     };
 
@@ -105,6 +108,8 @@
 
             this.pacman.play('munch');
             this.move(Phaser.LEFT);
+            
+            this.scoreText = game.add.text(0, 500, 'Score: 0', { fontSize: '34px Arial', fill: 'white' });
 
         },
 
@@ -228,6 +233,9 @@
 
             var audio = new Audio('assets/super_mario_coin.mp3');
             audio.play()
+            
+            this.score+=1;//anebasma tou score
+            this.scoreText.text= 'Score: ' + this.score;
             
             if (this.dots.total === 0)
             {
