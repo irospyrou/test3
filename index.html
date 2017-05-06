@@ -73,7 +73,7 @@
             this.load.crossOrigin = 'anonymous';
 	    this.load.image('mushroom1', 'assets/mushroom1.png');
             this.load.image('coin1', 'assets/coin1.png');
-	    this.load.image('star1', 'assets/star1.png');
+	    this.load.image('star2', 'assets/star2.png');
             this.load.image('tiles', 'assets/pacman-tiles.png');
             this.load.spritesheet('mario2', 'assets/mario2.png', 32, 32);
             this.load.tilemap('map', 'assets/pacman-map1.json', null, Phaser.Tilemap.TILED_JSON);
@@ -124,7 +124,7 @@
             game.add.text(game.world.width - 340, 500, 'Lives : ', { fontSize: '34px Tahoma', fill: 'white' });
 		
 	    for (var i = 0; i < 3; i++) {
-			var pacman = lives.create(game.world.width - 235 + (30 * i), 517, 'star1');
+			var pacman = lives.create(game.world.width - 235 + (30 * i), 517, 'star2');
 			pacman.anchor.setTo(0.5, 0.5);
 			pacman.angle = 90;
 			pacman.alpha = 0.4;
