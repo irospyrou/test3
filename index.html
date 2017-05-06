@@ -71,7 +71,7 @@
             //  Remove the next 2 lines if running locally
             this.load.baseURL = 'https://irospyrou.github.io/pacman/';
             this.load.crossOrigin = 'anonymous';
-
+	    this.load.image('mushroom1', 'assets/mushroom1.png');
             this.load.image('coin1', 'assets/coin1.png');
             this.load.image('tiles', 'assets/pacman-tiles.png');
             this.load.spritesheet('mario2', 'assets/mario2.png', 32, 32);
@@ -91,6 +91,7 @@
             this.dots = this.add.physicsGroup();
 
             this.map.createFromTiles(7, this.safetile, 'coin1', this.layer, this.dots);
+	    this.map.createFromTiles(30, this.safetile, 'mushroom1', this.layer, this.dots);
 
             //  The dots will need to be offset by 6px to put them back in the middle of the grid
             this.dots.setAll('x', 6, false, false, 1);
@@ -115,6 +116,8 @@
             this.scoreText = game.add.text(0, 500, 'Score: 0', { fontSize: '34px Tahoma', fill: 'white' });
             
             this.bonusText = game.add.text(360, 500, 'Bonus: 0', { fontSize: '34px Tahoma', fill: 'white' });
+		
+	    var sprite = game.add.sprite(417, 465, 'mushroom1');
 
         },
 
@@ -248,12 +251,25 @@
             }
 
         },
+	    
+	eatMushroom: function(pacman,mushroom1){
+            mushroom1.kill();
+	    this.bonus+=10;//anebasma score
+            this.bonusText.text= 'Bonus: ' + this.bonus;
+	    var audio = new Audio('assets/smb_1-up.wav');//mousiki bonus
+            audio.play()
+            /*if(this.strs.total===0)
+            {
+                this.strs.callAll('revive');
+            }*/
+        },
 
         update: function () {
           
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.dots, this.eatDot, null, this);
 
+	    this.physics.arcade.overlap(this.pacman, this.dots, this.eatMushroom, null, this);
             this.marker.x = this.math.snapToFloor(Math.floor(this.pacman.x), this.gridsize) / this.gridsize;
             this.marker.y = this.math.snapToFloor(Math.floor(this.pacman.y), this.gridsize) / this.gridsize;
 
