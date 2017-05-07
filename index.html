@@ -127,6 +127,8 @@
 		
 	    var sprite = game.add.sprite(417, 465, 'mushroom1');
 		
+	    game.add.tween(sprite).to( { alpha: 0 }, 30000, Phaser.Easing.Linear.None, true);	
+		
 	    lives = game.add.group();
             game.add.text(game.world.width - 340, 500, 'Lives : ', { fontSize: '34px Calibri', fill: 'white' });
 		
