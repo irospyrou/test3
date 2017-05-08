@@ -127,7 +127,7 @@
 		
 	    var sprite = game.add.sprite(417, 465, 'mushroom1');
 		
-	    game.add.tween(sprite).to( { alpha: 0 }, 30000, Phaser.Easing.Linear.None, true);	
+	    game.add.tween(sprite).to( { alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);	
 		
 	    lives = game.add.group();
             game.add.text(game.world.width - 340, 500, 'Lives : ', { fontSize: '34px Calibri', fill: 'white' });
@@ -278,10 +278,6 @@
             this.bonusText.text= 'Bonus: ' + this.bonus;
 	    var audio = new Audio('assets/smb_1-up.wav');//mousiki bonus
             audio.play()
-            if(this.mushrooms.total===0)
-            {
-                this.mushrooms.callAll('revive');
-            }
         },
 
         update: function () {
