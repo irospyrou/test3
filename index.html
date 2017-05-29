@@ -130,7 +130,7 @@
 	    game.add.tween(sprite).to( { alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);	
 		
 	    lives = game.add.group();
-            game.add.text(game.world.width - 300, 500, 'Lives : ', { fontSize: '20px Calibri', fill: 'white' });
+            game.add.text(game.world.width - 290, 500, 'Lives : ', { fontSize: '20px Calibri', fill: 'white' });
 		
 	    for (var i = 0; i < 3; i++) {
 			var pacman = lives.create(game.world.width - 235 + (30 * i), 517, 'star2');
