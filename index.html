@@ -114,6 +114,7 @@
             this.map.addTilesetImage('pacman-tiles', 'tiles');
 
             this.layer = this.map.createLayer('Pacman');
+		this.layer2 = this.map.createLayer('Z');
 
             this.dots = this.add.physicsGroup();
 	    this.mushrooms = this.add.physicsGroup();
@@ -134,6 +135,7 @@
             //  Pacman should collide with everything except the safe tile
             //this.map.setCollisionByExclusion([this.safetile], true, this.layer);
             this.map.setCollisionByExclusion([this.safetile], true, this.layer);
+		this.map.setCollisionByExclusion([this.safetile], true, this.layer2);
 
 		
             //  Position Pacman at grid location 14x17 (the +8 accounts for his anchor)
@@ -153,7 +155,7 @@
             
             this.bonusText = game.add.text(315, 500, 'Bonus: 0', { fontSize: '20px Calibri', fill: 'white' });
 		
-		this.timeText = game.add.text(0, 0, "Time: " + min + ":" + sec, { fontSize: '20px Calibri', fill: 'red' });
+		this.timeText = game.add.text(0, 0, "Time: " + min + ":" + sec, { fontSize: '20px Calibri', fill: 'blue' });
 		
 	    var sprite = game.add.sprite(417, 465, 'mushroom1');
 		
@@ -431,6 +433,7 @@
             this.bonusText.text= 'Bonus: ' + this.bonus;
 	    var audio = new Audio('assets/smb_1-up.wav');//mousiki bonus
             audio.play()
+		killCD = 5;
         },
 	    
 	    door: function() {
@@ -449,7 +452,13 @@
 
         update: function () {
 		
+		if(this.pacman.dead==true){
+			this.input.disabled = true;
+			this.speed=0;
+		}
+		
 		if( ms == "-"){
+			this.moveZ(Phaser.LEFT, this.z1);
 			ms = 0;
 			sec = 0;
 			min = 0;
@@ -461,11 +470,17 @@
 				sec = 0;
 				min++;
 			}
+			if ( killCD >=0 ){
+				killCD--;
+			}
 		}
 		else{
 			ms++;
 		}	
           
+		this.physics.arcade.collide(this.z1, this.layer2, this.checkZKeys, null, this);
+		this.physics.arcade.overlap(this.z1, this.pacman, this.killMario, null, this);
+		
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.dots, this.eatDot, null, this);
 	    this.physics.arcade.overlap(this.pacman, this.mushrooms, this.eatMushroom, null, this);
@@ -511,6 +526,8 @@
             {
                 this.turn();
             }
+		
+		this.turnZ(this.z1);
 
         }
 
