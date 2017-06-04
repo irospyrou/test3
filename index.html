@@ -26,6 +26,9 @@
 	    var ms = '-';
 	    var sec = '-';
 	    var min = '-';
+	    this.life1 = null;
+	    this.life2 = null;
+	    this.life3 = null;
 
     var Pacman = function (game) {
 
@@ -142,7 +145,10 @@
 		
 	    game.add.tween(sprite).to( { alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);	
 		
-	    
+	    this.life1 = this.add.sprite(175, 500, 'star2');
+		this.life2 = this.add.sprite(195, 500, 'star2');
+		this.life3 = this.add.sprite(215, 500, 'star2');
+		this.livesText = game.add.text(200, 500, "Lives: " + this.lives, { fontSize: "19px", fill: "#133913"});
 
         },
 
@@ -324,6 +330,29 @@
 	    this.physics.arcade.overlap(this.pacman, this.teleport, this.door, null, this);
 
 		this.timeText.text = "Time: " + min + ":" + sec;
+		
+		this.livesText.text = "Lives: ";
+		if(this.lives==0){
+			this.life1.visible = false;
+			this.life2.visible = false;
+			this.life3.visible = false;
+		}
+		else if(this.lives==1){
+			this.life1.visible = true;
+			this.life2.visible = false;
+			this.life3.visible = false;
+		}
+		else if(this.lives==2){
+			this.life1.visible = true;
+			this.life2.visible = true;
+			this.life3.visible = false;
+		}
+		else if(this.lives==3){
+			this.life1.visible = true;
+			this.life2.visible = true;
+			this.life3.visible = true;
+		}
+		
 		
 		this.marker.x = this.math.snapToFloor(Math.floor(this.pacman.x), this.gridsize) / this.gridsize;
             this.marker.y = this.math.snapToFloor(Math.floor(this.pacman.y), this.gridsize) / this.gridsize;
