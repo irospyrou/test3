@@ -26,7 +26,7 @@
 	    var ms = '-';
 	    var sec = '-';
 	    var min = '-';
-	    var killCD = 0;
+//	    var killCD = 0;
 	    Zranddir = null;
 	    Zdir = null;
 	    
@@ -154,7 +154,7 @@
             
             this.bonusText = game.add.text(315, 500, 'Bonus: 0', { fontSize: '20px Calibri', fill: 'white' });
 		
-		this.timeText = game.add.text(0, 0, "Time: " + min + ":" + sec, { fontSize: '20px Calibri', fill: 'red' });
+		this.timeText = game.add.text(0, 0, "Time: " + min + ":" + sec, { fontSize: '20px Calibri', fill: 'blue' });
 		
 	    var sprite = game.add.sprite(417, 465, 'mushroom1');
 		
@@ -384,30 +384,30 @@
 				return true;
 			},
 				
-			killMario: function( z ){
-				if( killCD != 0 ){
-					z.destroy();
-				}
-				else{
-					this.lives--;
-					this.pacman.destroy();
-					this.pacman = this.add.sprite((14 * 16) + 8, (17 * 16) + 8, 'mario2', 0);
-					this.pacman.anchor.set(0.5);
-					this.pacman.animations.add('munch', [0, 1, 2, 1], 20, true);
-	
-					this.physics.arcade.enable(this.pacman);
-					this.pacman.body.setSize(16, 16, 0, 0);
-	
-					this.cursors = this.input.keyboard.createCursorKeys();
-	
-					this.pacman.play('munch');
-					this.move(Phaser.LEFT);
-					if (this.lives == 0){
-						this.pacman.dead = true;
-						this.pacman.destroy();
-					}
-				}
-			},
+//			killMario: function( z ){
+//				if( killCD != 0 ){
+//					z.destroy();
+//				}
+//				else{
+//					this.lives--;
+//					this.pacman.destroy();
+//					this.pacman = this.add.sprite((14 * 16) + 8, (17 * 16) + 8, 'mario2', 0);
+//					this.pacman.anchor.set(0.5);
+//					this.pacman.animations.add('munch', [0, 1, 2, 1], 20, true);
+//	
+//					this.physics.arcade.enable(this.pacman);
+//					this.pacman.body.setSize(16, 16, 0, 0);
+//	
+//					this.cursors = this.input.keyboard.createCursorKeys();
+//	
+//					this.pacman.play('munch');
+//					this.move(Phaser.LEFT);
+//					if (this.lives == 0){
+//						this.pacman.dead = true;
+//						this.pacman.destroy();
+//					}
+//				}
+//			},
 
         eatDot: function (pacman, dot) {
 
@@ -432,7 +432,7 @@
             this.bonusText.text= 'Bonus: ' + this.bonus;
 	    var audio = new Audio('assets/smb_1-up.wav');//mousiki bonus
             audio.play()
-		killCD = 5;
+//		killCD = 5;
         },
 	    
 	    door: function() {
@@ -451,13 +451,13 @@
 
         update: function () {
 		
-		if(this.pacman.dead==true){
-			this.input.disabled = true;
-			this.speed=0;
-		}
+//		if(this.pacman.dead==true){
+//			this.input.disabled = true;
+//			this.speed=0;
+//		}
 		
 		if( ms == "-"){
-			this.moveZ(Phaser.LEFT, this.z1);
+//			this.moveZ(Phaser.LEFT, this.z1);
 			ms = 0;
 			sec = 0;
 			min = 0;
@@ -469,16 +469,16 @@
 				sec = 0;
 				min++;
 			}
-			if ( killCD >=0 ){
-				killCD--;
-			}
+//			if ( killCD >=0 ){
+//				killCD--;
+//			}
 		}
 		else{
 			ms++;
 		}	
           
-		this.physics.arcade.collide(this.z1, this.layer2, this.checkZKeys, null, this);
-		this.physics.arcade.overlap(this.z1, this.pacman, this.killMario, null, this);
+//		this.physics.arcade.collide(this.z1, this.layer2, this.checkZKeys, null, this);
+//		this.physics.arcade.overlap(this.z1, this.pacman, this.killMario, null, this);
 		
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.dots, this.eatDot, null, this);
@@ -526,7 +526,7 @@
                 this.turn();
             }
 		
-		this.turnZ(this.z1);
+//		this.turnZ(this.z1);
 
         }
 
