@@ -148,7 +148,7 @@
 
             this.cursors = this.input.keyboard.createCursorKeys();
 		
-		// Position Goomba
+		// Position Goombas
 		this.z1 = this.add.sprite((15 * 16) + 8, (17 * 16) + 8, 'goomba', 0);
 		this.z1.anchor.set(0.5);
 		this.z1.animations.add('walk', [0, 1, 0], 20, true);
@@ -156,12 +156,28 @@
 		this.z1.body.setSize(16, 16, 0, 0);
 		this.z1.play('walk');
 		this.Zcurrent = Phaser.DOWN;
+		
+		this.z2 = this.add.sprite((22 * 16) + 8, (3 * 16) + 8, 'goomba', 0);
+		this.z2.anchor.set(0.5);
+		this.z2.animations.add('walk', [0, 1, 0], 20, true);
+		this.physics.arcade.enable(this.z1);
+		this.z2.body.setSize(16, 16, 0, 0);
+		this.z2.play('walk');
+		this.Zcurrent = Phaser.DOWN;
+		
+		this.z3 = this.add.sprite((3 * 16) + 8, (22 * 16) + 8, 'goomba', 0);
+		this.z3.anchor.set(0.5);
+		this.z3.animations.add('walk', [0, 1, 0], 20, true);
+		this.physics.arcade.enable(this.z1);
+		this.z3.body.setSize(16, 16, 0, 0);
+		this.z3.play('walk');
+		this.Zcurrent = Phaser.DOWN;
             
             this.scoreText = game.add.text(450, 30, 'Score: 0', { fontSize: '20px Calibri', fill: 'white' });
             
             this.bonusText = game.add.text(450, 60, 'Bonus: 0', { fontSize: '20px Calibri', fill: 'white' });
 		
-		this.timeText = game.add.text(450, 0, "Time: " + min + ":" + sec, { fontSize: '20px Calibri', fill: 'red' });
+		this.timeText = game.add.text(450, 0, "Time: " + min + ":" + sec, { fontSize: '20px Calibri', fill: 'white' });
 		
 	    var sprite = game.add.sprite(417, 465, 'mushroom1');
 		
@@ -493,6 +509,12 @@
           
 		this.physics.arcade.collide(this.z1, this.layer, this.checkZKeys, null, this);
 		this.physics.arcade.overlap(this.z1, this.pacman, this.killMario, null, this);
+		
+		this.physics.arcade.collide(this.z2, this.layer, this.checkZKeys, null, this);
+		this.physics.arcade.overlap(this.z2, this.pacman, this.killMario, null, this);
+		
+		this.physics.arcade.collide(this.z3, this.layer, this.checkZKeys, null, this);
+		this.physics.arcade.overlap(this.z3, this.pacman, this.killMario, null, this);
 		
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.dots, this.eatDot, null, this);
