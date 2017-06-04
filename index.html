@@ -149,19 +149,19 @@
             this.cursors = this.input.keyboard.createCursorKeys();
 		
 		// Position Goomba
-		this.z1 = this.add.sprite((10 * 16) + 8, (13 * 16) + 8, 'goomba', 0);
+		this.z1 = this.add.sprite((9 * 16) + 8, (13 * 16) + 8, 'goomba', 0);
 		this.z1.anchor.set(0.5);
 		this.z1.animations.add('walk', [0, 1, 0], 20, true);
 		this.physics.arcade.enable(this.z1);
 		this.z1.body.setSize(16, 16, 0, 0);
 		this.z1.play('walk');
-		this.Zcurrent = Phaser.RIGHT;
+		this.Zcurrent = Phaser.DOWN;
             
             this.scoreText = game.add.text(0, 500, 'Score: 0', { fontSize: '20px Calibri', fill: 'white' });
             
             this.bonusText = game.add.text(315, 500, 'Bonus: 0', { fontSize: '20px Calibri', fill: 'white' });
 		
-		this.timeText = game.add.text(0, 0, "Time: " + min + ":" + sec, { fontSize: '20px Calibri', fill: 'blue' });
+		this.timeText = game.add.text(0, 0, "Time: " + min + ":" + sec, { fontSize: '20px Calibri', fill: 'red' });
 		
 	    var sprite = game.add.sprite(417, 465, 'mushroom1');
 		
