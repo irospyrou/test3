@@ -133,9 +133,8 @@
             this.mushrooms.setAll('y', 6, false, false, 1);
 
             //  Pacman should collide with everything except the safe tile
-            //this.map.setCollisionByExclusion([this.safetile], true, this.layer);
             this.map.setCollisionByExclusion([this.safetile], true, this.layer);
-		this.map.setCollisionByExclusion([this.safetile], true, this.layer2);
+//		this.map.setCollisionByExclusion([this.safetile], true, this.layer2);
 
 		
             //  Position Pacman at grid location 14x17 (the +8 accounts for his anchor)
