@@ -154,7 +154,7 @@
             
             this.bonusText = game.add.text(315, 500, 'Bonus: 0', { fontSize: '20px Calibri', fill: 'white' });
 		
-		this.timeText = game.add.text(0, 0, "Time: " + min + ":" + sec, { fontSize: '20px Calibri', fill: 'white' });
+		this.timeText = game.add.text(0, 0, "Time: " + min + ":" + sec, { fontSize: '20px Calibri', fill: 'red' });
 		
 	    var sprite = game.add.sprite(417, 465, 'mushroom1');
 		
@@ -163,7 +163,7 @@
 	    this.life1 = this.add.sprite(225, 500, 'star2');
 		this.life2 = this.add.sprite(255, 500, 'star2');
 		this.life3 = this.add.sprite(285, 500, 'star2');
-		this.livesText = game.add.text(147, 500, "Lives: " + this.lives, { fontSize: "19px", fill: "white"});
+		this.livesText = game.add.text(147, 500, "Lives: ", { fontSize: "19px", fill: "white"});
 
         },
 
