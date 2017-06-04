@@ -77,6 +77,7 @@
             this.load.baseURL = 'https://irospyrou.github.io/pacman/';
             this.load.crossOrigin = 'anonymous';
 	    this.load.image('mushroom1', 'assets/mushroom1.png');
+	    this.load.image('door', 'assets/door.png');
             this.load.image('coin1', 'assets/coin1.png');
 	    this.load.image('star2', 'assets/star2.png');
             this.load.image('tiles', 'assets/pacman-tiles.png');
@@ -96,12 +97,14 @@
 
             this.dots = this.add.physicsGroup();
 	    this.mushrooms = this.add.physicsGroup();
+		this.teleport = this.add.physicsGroup();
 
 
             this.map.createFromTiles(7, this.safetile, 'coin1', this.layer, this.dots);
-	    //this.map.createFromTiles(35, this.safetile, 'mushroom1', this.layer, this.mushrooms);
-            this.map.createFromTiles(35, this.safetile, 'mushroom1', this.layer, this.mushrooms);
-            //  The dots will need to be offset by 6px to put them back in the middle of the grid
+	    this.map.createFromTiles(35, this.safetile, 'mushroom1', this.layer, this.mushrooms);
+		this.map.createFromTiles(36, this.safetile, 'door', this.layer, this.teleport);
+           
+		//  The dots will need to be offset by 6px to put them back in the middle of the grid
             this.dots.setAll('x', 6, false, false, 1);
             this.dots.setAll('y', 6, false, false, 1);
 		
@@ -117,14 +120,14 @@
             this.pacman = this.add.sprite((14 * 16) + 8, (17 * 16) + 8, 'mario2', 0);
             this.pacman.anchor.set(0.5);
             this.pacman.animations.add('munch', [0, 1, 2, 1], 20, true);
-
             this.physics.arcade.enable(this.pacman);
             this.pacman.body.setSize(16, 16, 0, 0);
+	    this.pacman.play('munch');
+            this.move(Phaser.LEFT);
 
             this.cursors = this.input.keyboard.createCursorKeys();
 
-            this.pacman.play('munch');
-            this.move(Phaser.LEFT);
+            
             
             this.scoreText = game.add.text(0, 500, 'Score: 0', { fontSize: '20px Calibri', fill: 'white' });
             
@@ -286,6 +289,20 @@
 	    var audio = new Audio('assets/smb_1-up.wav');//mousiki bonus
             audio.play()
         },
+	    
+	    door: function() {
+		this.pacman.destroy();
+		this.pacman = this.add.sprite((14 * 16) + 8, (17 * 16) + 8, 'mario2', 0);
+		this.pacman.anchor.set(0.5);
+		this.pacman.animations.add('munch', [0, 1, 2, 1], 20, true);
+		this.physics.arcade.enable(this.pacman);
+		this.pacman.body.setSize(16, 16, 0, 0);
+	
+		this.cursors = this.input.keyboard.createCursorKeys();
+	
+		this.pacman.play('munch');
+		this.move(Phaser.LEFT);
+	   },
 
         update: function () {
 		
@@ -309,6 +326,7 @@
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.dots, this.eatDot, null, this);
 	    this.physics.arcade.overlap(this.pacman, this.mushrooms, this.eatMushroom, null, this);
+	    this.physics.arcade.overlap(this.pacman, this.teleport, this.door, null, this);
 
 		this.timeText.text = "Time: " + min + ":" + sec;
 		
