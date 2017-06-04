@@ -26,15 +26,24 @@
 	    var ms = '-';
 	    var sec = '-';
 	    var min = '-';
-	    this.life1 = null;
-	    this.life2 = null;
-	    this.life3 = null;
+	    var killCD = 0;
+	    Zranddir = null;
+	    Zdir = null;
+	    
 
     var Pacman = function (game) {
 
         this.map = null;
         this.layer = null;
         this.pacman = null;
+	    
+	    this.layer2 = null;
+	    this.z1 = null;
+	    this.Zcurrent = Phaser.NONE;
+	    this.Zturning = Phaser.NONE;
+	    this.Zdir = Phaser.NONE;
+	    this.Zranddir = Phaser.NONE;
+	    this.dead = false
 
         this.safetile = 14;
         this.gridsize = 16;
@@ -59,6 +68,10 @@
 	    
 	    this.lives = 3;
 	    this.livesText='';
+	    
+	    this.life1 = null;
+	    this.life2 = null;
+	    this.life3 = null;
 
     };
 
@@ -88,6 +101,7 @@
 	    this.load.image('star2', 'assets/star2.png');
             this.load.image('tiles', 'assets/pacman-tiles.png');
             this.load.spritesheet('mario2', 'assets/mario2.png', 32, 32);
+		this.load.spritesheet('goomba', 'assets/goomba.png', 32, 32);
             this.load.tilemap('map', 'assets/pacman-map1.json', null, Phaser.Tilemap.TILED_JSON);
 
             //  Needless to say, graphics (C)opyright Namco
