@@ -154,7 +154,7 @@
             
             this.bonusText = game.add.text(315, 500, 'Bonus: 0', { fontSize: '20px Calibri', fill: 'white' });
 		
-		this.timeText = game.add.text(0, 0, "Time: " + min + ":" + sec, { fontSize: '20px Calibri', fill: 'red' });
+		this.timeText = game.add.text(0, 0, "Time: " + min + ":" + sec, { fontSize: '20px Calibri', fill: 'blue' });
 		
 	    var sprite = game.add.sprite(417, 465, 'mushroom1');
 		
@@ -432,7 +432,7 @@
             this.bonusText.text= 'Bonus: ' + this.bonus;
 	    var audio = new Audio('assets/smb_1-up.wav');//mousiki bonus
             audio.play()
-//		killCD = 5;
+		killCD = 5;
         },
 	    
 	    door: function() {
