@@ -398,6 +398,8 @@
 				else{
 					this.lives--;
 					this.pacman.destroy();
+					var audio = new Audio('assets/smb_mariodie.wav');
+            				audio.play()
 					this.pacman = this.add.sprite((14 * 16) + 8, (17 * 16) + 8, 'mario2', 0);
 					this.pacman.anchor.set(0.5);
 					this.pacman.animations.add('munch', [0, 1, 2, 1], 20, true);
@@ -412,6 +414,9 @@
 					if (this.lives == 0){
 						this.pacman.dead = true;
 						this.pacman.destroy();
+						var audio = new Audio('smb_gameover.wav');
+            					audio.play()
+						this.GameOver = game.add.text(140, 190, "GAME OVER", { fontSize: "80px", fill: "#a00000"});
 					}
 				}
 			},
