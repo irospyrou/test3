@@ -162,7 +162,7 @@
 		this.z2 = this.add.sprite((22 * 16) + 8, (3 * 16) + 8, 'goomba', 0);
 		this.z2.anchor.set(0.5);
 		this.z2.animations.add('walk', [0, 1, 0], 20, true);
-		this.physics.arcade.enable(this.z1);
+		this.physics.arcade.enable(this.z2);
 		this.z2.body.setSize(16, 16, 0, 0);
 		this.z2.play('walk');
 		this.Zcurrent = Phaser.DOWN;
@@ -170,7 +170,7 @@
 		this.z3 = this.add.sprite((3 * 16) + 8, (22 * 16) + 8, 'goomba', 0);
 		this.z3.anchor.set(0.5);
 		this.z3.animations.add('walk', [0, 1, 0], 20, true);
-		this.physics.arcade.enable(this.z1);
+		this.physics.arcade.enable(this.z3);
 		this.z3.body.setSize(16, 16, 0, 0);
 		this.z3.play('walk');
 		this.Zcurrent = Phaser.DOWN;
