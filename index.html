@@ -23,6 +23,9 @@
     <script type="text/javascript">
 
     var game = new Phaser.Game(450, 550, Phaser.AUTO);
+	    var ms = '-';
+	    var sec = '-';
+	    var min = '-';
 
     var Pacman = function (game) {
 
@@ -126,6 +129,8 @@
             this.scoreText = game.add.text(0, 500, 'Score: 0', { fontSize: '20px Calibri', fill: 'white' });
             
             this.bonusText = game.add.text(315, 500, 'Bonus: 0', { fontSize: '20px Calibri', fill: 'white' });
+		
+		this.timeText = game.add.text(0, 0, "Time: " + min + ":" + sec, { fontSize: '20px Calibri', fill: 'white' });
 		
 	    var sprite = game.add.sprite(417, 465, 'mushroom1');
 		
@@ -283,12 +288,31 @@
         },
 
         update: function () {
+		
+		if( ms == "-"){
+			ms = 0;
+			sec = 0;
+			min = 0;
+		}
+		else if( ms == 59 ){
+			sec++;
+			ms = 0;
+			if (sec == 59 ){
+				sec = 0;
+				min++;
+			}
+		}
+		else{
+			ms++;
+		}	
           
             this.physics.arcade.collide(this.pacman, this.layer);
             this.physics.arcade.overlap(this.pacman, this.dots, this.eatDot, null, this);
-
 	    this.physics.arcade.overlap(this.pacman, this.mushrooms, this.eatMushroom, null, this);
-            this.marker.x = this.math.snapToFloor(Math.floor(this.pacman.x), this.gridsize) / this.gridsize;
+
+		this.timeText.text = "Time: " + min + ":" + sec;
+		
+		this.marker.x = this.math.snapToFloor(Math.floor(this.pacman.x), this.gridsize) / this.gridsize;
             this.marker.y = this.math.snapToFloor(Math.floor(this.pacman.y), this.gridsize) / this.gridsize;
 
             //  Update our grid sensors
