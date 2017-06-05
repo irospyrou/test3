@@ -533,13 +533,13 @@
 					ms++;
 				}	
 	         
-				this.physics.arcade.collide(this.z1, this.layer, this.checkZKeys, null, this);	
+				this.physics.arcade.collide(this.z1, this.layer2, this.checkZKeys, null, this);	
 				this.physics.arcade.overlap(this.z1, this.pacman, this.killMario, null, this);
 
-				this.physics.arcade.collide(this.z2, this.layer, this.checkZKeys, null, this);
+				this.physics.arcade.collide(this.z2, this.layer2, this.checkZKeys, null, this);
 				this.physics.arcade.overlap(this.z2, this.pacman, this.killMario, null, this);
 		
-				this.physics.arcade.collide(this.z3, this.layer, this.checkZKeys, null, this);
+				this.physics.arcade.collide(this.z3, this.layer2, this.checkZKeys, null, this);
 				this.physics.arcade.overlap(this.z3, this.pacman, this.killMario, null, this);
 		
 				this.physics.arcade.collide(this.pacman, this.layer);
