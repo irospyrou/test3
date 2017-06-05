@@ -370,10 +370,10 @@
 					this.Zranddir = game.rnd.integerInRange(1, 2);
 					if ( this.Zranddir == 1) 
 					{ 
-						this.Zdir = Phaser.UP 
+						this.Zdir = Phaser.UP; 
 					}
 					else if ( this.Zranddir == 2) { 
-						this.Zdir = Phaser.DOWN 
+						this.Zdir = Phaser.DOWN; 
 					}
 					this.moveZ(this.Zdir, z);
 				}
@@ -381,11 +381,11 @@
 					this.Zranddir = game.rnd.integerInRange(1, 4);
 					if ( this.Zranddir == 1) 
 					{ 
-						this.Zdir = Phaser.LEFT 
+						this.Zdir = Phaser.LEFT; 
 					}
 					else if ( this.Zranddir == 4) 
 					{ 
-						this.Zdir = Phaser.RIGHT 
+						this.Zdir = Phaser.RIGHT; 
 					}
 					this.moveZ(this.Zdir, z);
 				}
