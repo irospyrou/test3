@@ -350,45 +350,45 @@
 				if( this.Zcurrent == Phaser.NONE ) { 
 					this.Zcurrent = Phaser.RIGHT; 
 				}
-//				if ( num == 1 ){
-//					this.Zdir = Phaser.UP
-//					num++;
-//				}
-//				else if( num == 2 ){
-//					this.Zdir = Phaser.LEFT
-//					num++;
-//				}
-//				else if( num == 3 ){
-//					this.Zdir = Phaser.DOWN
-//					num++;
-//				}
-//				else if( num == 4 ){
-//					this.Zdir = Phaser.RIGHT
-//					num = 1;
-//				}
-				if( this.Zcurrent == Phaser.RIGHT || this.Zcurrent == Phaser.LEFT ){
-					this.Zranddir = game.rnd.integerInRange(1, 2);
-					if ( this.Zranddir == 1) 
-					{ 
-						this.Zdir = Phaser.UP; 
-					}
-					else if ( this.Zranddir == 2) { 
-						this.Zdir = Phaser.DOWN; 
-					}
-					this.moveZ(this.Zdir, z);
+				if ( num == 1 ){
+					this.Zdir = Phaser.UP;
+					num++;
 				}
-				else if( this.Zcurrent == Phaser.UP || this.Zcurrent == Phaser.DOWN ){
-					this.Zranddir = game.rnd.integerInRange(1, 4);
-					if ( this.Zranddir == 1) 
-					{ 
-						this.Zdir = Phaser.LEFT; 
-					}
-					else if ( this.Zranddir == 4) 
-					{ 
-						this.Zdir = Phaser.RIGHT; 
-					}
-					this.moveZ(this.Zdir, z);
+				else if( num == 2 ){
+					this.Zdir = Phaser.LEFT;
+					num++;
 				}
+				else if( num == 3 ){
+					this.Zdir = Phaser.DOWN;
+					num++;
+				}
+				else if( num == 4 ){
+					this.Zdir = Phaser.RIGHT;
+					num = 1;
+				}
+//				if( this.Zcurrent == Phaser.RIGHT || this.Zcurrent == Phaser.LEFT ){
+//					this.Zranddir = game.rnd.integerInRange(1, 2);
+//					if ( this.Zranddir == 1) 
+//					{ 
+//						this.Zdir = Phaser.UP; 
+//					}
+//					else if ( this.Zranddir == 2) { 
+//						this.Zdir = Phaser.DOWN; 
+//					}
+//					this.moveZ(this.Zdir, z);
+//				}
+//				else if( this.Zcurrent == Phaser.UP || this.Zcurrent == Phaser.DOWN ){
+//					this.Zranddir = game.rnd.integerInRange(1, 4);
+//					if ( this.Zranddir == 1) 
+//					{ 
+//						this.Zdir = Phaser.LEFT; 
+//					}
+//					else if ( this.Zranddir == 4) 
+//					{ 
+//						this.Zdir = Phaser.RIGHT; 
+//					}
+//					this.moveZ(this.Zdir, z);
+//				}
 				if( this.Zdir == Phaser.NONE ){
 					this.Zdir = Phaser.RIGHT;
 					this.moveZ(this.Zdir, z);
