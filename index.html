@@ -30,6 +30,7 @@
 		Zranddir = null;
 		Zdir = null;
 		var num = 1;
+		var randomVar = 0;
 		    
 		var Pacman = function (game) {
 	
@@ -305,135 +306,141 @@
 	
 			},
 	    
-			moveZ: function (direction, z) {
-		
-				var Zspeed = z.speed;
-	
-				if (direction === Phaser.LEFT || direction === Phaser.UP)
-				{
-					Zspeed = -Zspeed;
-				}
-		
-				if (direction === Phaser.LEFT || direction === Phaser.RIGHT)
-				{
-					z.body.velocity.x = Zspeed;
-				}
-				else
-				{
-					z.body.velocity.y = Zspeed;
-				}
-	
-				//  Reset the scale and angle (Pacman is facing to the right in the sprite sheet)
-				z.scale.x = 1;
-				z.angle = 0;
-	
-				if (direction === Phaser.LEFT)
-				{
-					z.scale.x = -1;
-				}
-				else if (direction === Phaser.UP)
-				{
-					z.angle = 270;
-				}
-				else if (direction === Phaser.DOWN)
-				{
-					z.angle = 90;
-				}
-		
-				this.Zcurrent = direction;
-				if( this.Zcurrent == Phaser.NONE ) { 
-					this.Zcurrent = Phaser.RIGHT; 
-				}
-			},
+//			moveZ: function (direction, z) {
+//		
+//				var Zspeed = z.speed;
+//	
+//				if (direction === Phaser.LEFT || direction === Phaser.UP)
+//				{
+//					Zspeed = -Zspeed;
+//				}
+//		
+//				if (direction === Phaser.LEFT || direction === Phaser.RIGHT)
+//				{
+//					z.body.velocity.x = Zspeed;
+//				}
+//				else
+//				{
+//					z.body.velocity.y = Zspeed;
+//				}
+//	
+//				//  Reset the scale and angle (Pacman is facing to the right in the sprite sheet)
+//				z.scale.x = 1;
+//				z.angle = 0;
+//	
+//				if (direction === Phaser.LEFT)
+//				{
+//					z.scale.x = -1;
+//				}
+//				else if (direction === Phaser.UP)
+//				{
+//					z.angle = 270;
+//				}
+//				else if (direction === Phaser.DOWN)
+//				{
+//					z.angle = 90;
+//				}
+//		
+//				this.Zcurrent = direction;
+//				if( this.Zcurrent == Phaser.NONE ) { 
+//					this.Zcurrent = Phaser.RIGHT; 
+//				}
+//			},
 			
 			checkZKeys: function( z ){
-				if( this.Zcurrent == Phaser.NONE ) { 
-					this.Zcurrent = Phaser.RIGHT; 
-				}
-				if ( num == 1 ){
-					this.Zdir = Phaser.UP;
-					num++;
-				}
-				else if( num == 2 ){
-					this.Zdir = Phaser.LEFT;
-					num++;
-				}
-				else if( num == 3 ){
-					this.Zdir = Phaser.DOWN;
-					num++;
-				}
-				else if( num == 4 ){
-					this.Zdir = Phaser.RIGHT;
-					num = 1;
-				}
-//				if( this.Zcurrent == Phaser.RIGHT || this.Zcurrent == Phaser.LEFT ){
-//					this.Zranddir = game.rnd.integerInRange(1, 2);
-//					if ( this.Zranddir == 1) 
-//					{ 
-//						this.Zdir = Phaser.UP; 
-//					}
-//					else if ( this.Zranddir == 2) { 
-//						this.Zdir = Phaser.DOWN; 
-//					}
+				var Zspeed = z.speed;
+				
+        			randomVar = Math.floor((Math.random() * 2) + 1);
+        			if(randomVar == 1)
+        			{
+        				z.angle = z.angle + 90;
+        			}
+       			 	else
+        			{
+        				z.angle = z.angle - 90;
+        			}       
+				
+        			z.scale.x = 1;
+ 			       	if(z.angle == 0)
+        			{
+        				z.body.velocity.x = Zspeed;
+		        	}
+        			if(z.angle == -180)
+     			   	{
+        				z.body.velocity.x = -Zspeed;
+        			}
+        			if(z.angle == 90)
+        			{
+        				z.body.velocity.y = Zspeed;
+        			}
+        			if(z.angle == -90)
+        			{
+        				z.body.velocity.y = -Zspeed;
+        			}       
+//				if( this.Zcurrent == Phaser.NONE ) { 
+//					this.Zcurrent = Phaser.RIGHT; 
+//				}
+//				if ( num == 1 ){
+//					this.Zdir = Phaser.UP;
+//					num++;
+//				}
+//				else if( num == 2 ){
+//					this.Zdir = Phaser.LEFT;
+//					num++;
+//				}
+//				else if( num == 3 ){
+//					this.Zdir = Phaser.DOWN;
+//					num++;
+//				}
+//				else if( num == 4 ){
+//					this.Zdir = Phaser.RIGHT;
+//					num = 1;
+//				}
+//				if( this.Zdir == Phaser.NONE ){
+//					this.Zdir = Phaser.RIGHT;
 //					this.moveZ(this.Zdir, z);
 //				}
-//				else if( this.Zcurrent == Phaser.UP || this.Zcurrent == Phaser.DOWN ){
-//					this.Zranddir = game.rnd.integerInRange(1, 4);
-//					if ( this.Zranddir == 1) 
-//					{ 
-//						this.Zdir = Phaser.LEFT; 
-//					}
-//					else if ( this.Zranddir == 4) 
-//					{ 
-//						this.Zdir = Phaser.RIGHT; 
-//					}
-//					this.moveZ(this.Zdir, z);
+			},
+			
+//			checkZDirection: function (turnTo) {
+//				if (this.Zturning === turnTo || this.directions[turnTo] === null || this.directions[turnTo].index !== 1)
+//				{
+//					//  Invalid direction if they're already set to turn that way
+//					//  Or there is no tile there, or the tile isn't index 1 (a floor tile)
+//					return;
 //				}
-				if( this.Zdir == Phaser.NONE ){
-					this.Zdir = Phaser.RIGHT;
-					this.moveZ(this.Zdir, z);
-				}
-			},
+//				//  Check if they want to turn around and can
+//				if (this.Zcurrent === this.opposites[turnTo])
+//				{
+//					this.moveZ(turnTo);
+//				}
+//				else
+//				{
+//					this.Zturning = turnTo;
+//					this.turnPoint.x = (this.marker.x * this.gridsize) + (this.gridsize / 2);
+//					this.turnPoint.y = (this.marker.y * this.gridsize) + (this.gridsize / 2);
+//				}
+//			},
 			
-			checkZDirection: function (turnTo) {
-				if (this.Zturning === turnTo || this.directions[turnTo] === null || this.directions[turnTo].index !== 1)
-				{
-					//  Invalid direction if they're already set to turn that way
-					//  Or there is no tile there, or the tile isn't index 1 (a floor tile)
-					return;
-				}
-				//  Check if they want to turn around and can
-				if (this.Zcurrent === this.opposites[turnTo])
-				{
-					this.moveZ(turnTo);
-				}
-				else
-				{
-					this.Zturning = turnTo;
-					this.turnPoint.x = (this.marker.x * this.gridsize) + (this.gridsize / 2);
-					this.turnPoint.y = (this.marker.y * this.gridsize) + (this.gridsize / 2);
-				}
-			},
-			
-			turnZ: function (z) {
-				var cx = Math.floor(z.x);
-				var cy = Math.floor(z.y);
-				//  This needs a threshold, because at high speeds you can't turn because the coordinates skip past
-				if (!this.math.fuzzyEqual(cx, this.turnPoint.x, this.threshold) || !this.math.fuzzyEqual(cy, this.turnPoint.y, this.threshold))
-				{
-					return false;
-				}
-				//  Grid align before Zturning
-				z.x = this.turnPoint.x;
-				z.y = this.turnPoint.y;
-				if( z.body != null ){
-					z.body.reset(this.turnPoint.x, this.turnPoint.y);
-					this.moveZ(this.Zturning, z);
-					this.Zturning = Phaser.NONE;
-				}
-							
-				return true;
-			},
+//			turnZ: function (z) {
+//				var cx = Math.floor(z.x);
+//				var cy = Math.floor(z.y);
+//				//  This needs a threshold, because at high speeds you can't turn because the coordinates skip past
+//				if (!this.math.fuzzyEqual(cx, this.turnPoint.x, this.threshold) || !this.math.fuzzyEqual(cy, this.turnPoint.y, this.threshold))
+//				{
+//					return false;
+//				}
+//				//  Grid align before Zturning
+//				z.x = this.turnPoint.x;
+//				z.y = this.turnPoint.y;
+//				if( z.body != null ){
+//					z.body.reset(this.turnPoint.x, this.turnPoint.y);
+//					this.moveZ(this.Zturning, z);
+//					this.Zturning = Phaser.NONE;
+//				}
+//							
+//				return true;
+//			},
 					
 			killMario: function( z ){
 				if( killCD != 0 ){
