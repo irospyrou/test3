@@ -37,6 +37,7 @@
 			this.layer = null;
 			this.pacman = null;
 	    
+			this.layer1 = this.layer;
 			this.layer2 = null;
 			this.z1 = null;
 			this.z2 = null;
@@ -513,6 +514,8 @@
 					this.speed=0;
 				}
 		
+				this.layer1 = this.layer;
+				
 				if( ms == "-"){
 					ms = 0;
 					sec = 0;
