@@ -517,6 +517,9 @@
 				this.layer1 = this.layer;
 				
 				if( ms == "-"){
+					this.moveZ(Phaser.LEFT, this.z1);
+					this.moveZ(Phaser.RIGHT, this.z2);
+					this.moveZ(Phaser.LEFT, this.z3);
 					ms = 0;
 					sec = 0;
 					min = 0;
